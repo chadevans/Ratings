@@ -37,6 +37,7 @@ define([
         mouseoverArray : null,
         root : "",
         ratingsListEvent : "",
+        emptyRatingDefault: "",
         pathAttr : "",
         pathName : "",
 
@@ -73,15 +74,18 @@ define([
             ratingsList = "";
 
             //retrieve and calculate the vote values
-            showTotal = mxApp.getAttribute(this.ratingsTotal);
-            showCount = mxApp.getAttribute(this.ratingsCount);
+            showTotal = Number(mxApp.getAttribute(this.ratingsTotal));
+            showCount = Number(mxApp.getAttribute(this.ratingsCount));
             if (showCount === 0) {
-                showVote = 1;
+                if (this.emptyRatingDefault)
+                    showVote = 0;
+                else
+                    showVote = 1;
             } else {
                 showVote = number.round((showTotal / showCount));
             }
             ratingsList = mxui.dom.create("ul");
-            if (this.voteEnabled === true) {
+            if (this.voteEnabled === true && !this.readOnly) {
                 this.ratingsListEvent = this.connect(ratingsList, "onmouseleave", lang.hitch(this, this.mouseleaveEvent, showVote));
             }
 
