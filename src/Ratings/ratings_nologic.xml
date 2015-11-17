@@ -24,6 +24,11 @@
       <category>Behavior</category>
       <description>This boolean will determine if the widget is read-only or not.</description>
     </property>
+        <property key="emptyRatingDefault" type="boolean" defaultValue="false">
+            <caption>Empty Rating Default</caption>
+            <category>Behavior</category>
+            <description>This boolean with determine if an empty rating is provided as the default</description>
+        </property>
 			<property key="standardImage" type="image">
       <caption>Unstarred image</caption>
       <category>Appearance</category>

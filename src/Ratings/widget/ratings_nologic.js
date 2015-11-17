@@ -30,6 +30,7 @@ define([
         
         name : "",
         voteEnabled : false,
+        emptyRatingDefault : "",
         standardImage : "",
         mouseoverImage : "",
 
@@ -58,7 +59,10 @@ define([
                 this.setRating(this.newvalue);
             } else {
                 if (this.voteEnabled === true) {//set default value
-                    this.newvalue = 1; //do not detach
+                    if (this.emptyRatingDefault)
+                        this.newvalue = 0; //do not detach
+                    else
+                        this.newvalue = 1; //do not detach
                     this.onChange();
                 }
                 this.showCurrentValue();
